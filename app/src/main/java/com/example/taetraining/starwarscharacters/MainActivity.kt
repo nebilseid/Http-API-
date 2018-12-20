@@ -1,7 +1,9 @@
 package com.example.taetraining.starwarscharacters
 
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import com.example.taetraining.starwarscharacters.SWRecyclerViewPackage.SecondActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -27,6 +29,10 @@ class MainActivity : AppCompatActivity() {
         val retrofit = retrofitBuilder.client(okHttpClient).build()
 
         val starwarCharacters = retrofit.create(StarwarsServices::class.java)
+
+        btnViewList.setOnClickListener {
+            startActivity(Intent(this,SecondActivity::class.java))
+        }
 
                     btnSubmit.setOnClickListener {
                 starwarCharacters.getUserDetails(etId.text.toString())
